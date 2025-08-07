@@ -41,13 +41,6 @@ export class AppServer {
       cascadeHooks: true,
     });
 
-    await f.register(fastifyJwt, {
-      secret: "supersecret",
-      sign: {
-        expiresIn: "1h",
-      },
-    });
-
     // DEBUG
     // f.addHook("onRequest", async (request, reply) => {
     //     f.log.info(`[onRequest] Received request: ${request.method} ${request.url} from IP: ${request.ip}`);
