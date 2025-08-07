@@ -6,7 +6,7 @@ export default async function endpoint(fastify: FastifyInstance, options: Fastif
         const user = { id: 1, name: 'Alice' };
 
         // Sign the JWT token and send it back to the client.
-        const token = reply.jwtSign(user);
+        const token = await reply.jwtSign(user);
         
         return { token };
     });

@@ -6,6 +6,7 @@ import fastifyAutoload from "@fastify/autoload";
 import type { AddressInfo } from "node:net";
 import type { Env } from "../env-schema.ts";
 import { AppEnv } from "../app/common/types.ts";
+import fastifyJwt from "@fastify/jwt";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -36,6 +37,14 @@ export class AppServer {
 
     private async _build() {
         const f = this._fastify;
+
+        await f.register(fastifyJwt, {
+            secret: "supersecret",
+            sign: {
+                expiresIn: "1h",
+                
+            }
+        });
 
         await f.register(fastifySensible);
 
