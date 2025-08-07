@@ -4,13 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write \"./**/*.ts\" --ignore-path .gitignore",
+    "typecheck": "tsc --noEmit",
+    "lint": "oxlint",
+    "test:ci": "vitest run",
+    "test": "npm run typecheck && vitest run --reporter=verbose",
+    "dev": "npm run typecheck && node --experimental-transform-types --env-file=.env --watch src/index.ts",
+    "start": "TS_NODE_BASEURL=./dist node --env-file=.env dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
-    "@sinclair/typebox": "^0.34.38"
+    "@fastify/autoload": "^6.3.1",
+    "@fastify/env": "^5.0.2",
+    "@fastify/sensible": "^6.0.3",
+    "@fastify/type-provider-typebox": "^5.2.0",
+    "@sinclair/typebox": "^0.34.38",
+    "fastify": "^5.4.0",
+    "fastify-plugin": "^5.0.1",
+    "pino": "^9.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.2.0",
+    "pino-pretty": "^13.1.1",
+    "typescript": "^5.9.2"
   }
 }

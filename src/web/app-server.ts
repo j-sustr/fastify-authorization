@@ -1,3 +1,11 @@
+import { dirname, join } from "node:path";
+import { AppEnv } from "../app/common/types";
+import { fileURLToPath } from "node:url";
+import type { FastifyInstance } from "fastify";
+import { Env } from "../env-schema";
+import fastifySensible from "@fastify/sensible";
+import fastifyAutoload from "@fastify/autoload";
+import { AddressInfo } from "node:net";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -11,17 +19,6 @@ declare module "fastify" {
         user_id: number;
         id?: number
     }
-}
-
-declare module '@fastify/session' {
-  interface FastifySessionObject {
-    user_id?: string;
-    state?: string; // For OAuth state
-    email?: string;
-    access_token?: string;
-    id_token?: string;
-    userinfo?: Record<string, unknown>;
-  }
 }
 
 export class AppServer {
@@ -39,12 +36,8 @@ export class AppServer {
 
     private async _build() {
         const f = this._fastify;
-        const isDev = this._env === AppEnv.DEV;
 
         await f.register(fastifySensible);
-
-        const errorHandler = new ErrorHandler(this._metricsService);
-        f.setErrorHandler(errorHandler.handle.bind(errorHandler));
 
         // DEBUG
         // f.addHook("onRequest", async (request, reply) => {
@@ -66,25 +59,6 @@ export class AppServer {
 
         await f.register(apiAuthGuard, {
             prefix: "/api/v1",
-        });
-
-        await f.register(fastifyBasicAuth, {
-            validate: async (username, password, request, reply) => {
-                if (username === "admin" && password === f.config.API_DOCS_PASSWORD) {
-                    return;
-                }
-                return reply.unauthorized("Invalid credentials");
-            },
-            authenticate: true,
-        });
-
-        await f.addHook("onRequest", (request, reply, done) => {
-            const docsRoutes = ["/api-docs", "/reference"];
-            if (docsRoutes.some((prefix) => request.url.startsWith(prefix))) {
-                f.basicAuth(request, reply, done);
-            } else {
-                done();
-            }
         });
 
         await f.register(fastifyAutoload, {

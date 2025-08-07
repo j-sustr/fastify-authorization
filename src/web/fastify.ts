@@ -1,8 +1,8 @@
-import fastifyEnv from "@fastify/env";
 import type { TypeBoxTypeProvider } from "@fastify/type-provider-typebox";
 import Fastify from "fastify";
 import { createLogger, type LoggerConfig } from "./logger.ts";
 import { AppEnv } from "../app/common/types.ts";
+import fastifyEnv from "@fastify/env";
 import { EnvSchema } from "../env-schema.ts";
 
 type Config = {
