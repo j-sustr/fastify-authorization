@@ -32,6 +32,9 @@ importers:
       '@sinclair/typebox':
         specifier: ^0.34.38
         version: 0.34.38
+      close-with-grace:
+        specifier: ^2.2.0
+        version: 2.2.0
       dotenv:
         specifier: ^17.2.1
         version: 17.2.1
@@ -162,6 +165,9 @@ packages:
 
   bn.js@4.12.2:
     resolution: {integrity: sha512-n4DSx829VRTRByMRGdjQ9iqsN0Bh4OolPsFnaZBLcbi8iXcB+kJ9s7EnRt4wILZNV3kPLHkRVfOc/HvhC3ovDw==}
+
+  close-with-grace@2.2.0:
+    resolution: {integrity: sha512-OdcFxnxTm/AMLPHA4Aq3J1BLpkojXP7I4G5QBQLN5TT55ED/rk04rAoDbtfNnfZ988kGXPxh1bdRLeIU9bz/lA==}
 
   colorette@2.0.20:
     resolution: {integrity: sha512-IfEDxwoWIjkeXL1eXcDiow4UbKjhLdq6/EuSVR9GMN7KVH3r9gQ83e73hsz1Nd1T3ijd5xv1wcWRYO+D6kCI2w==}
@@ -627,6 +633,8 @@ snapshots:
       fastq: 1.19.1
 
   bn.js@4.12.2: {}
+
+  close-with-grace@2.2.0: {}
 
   colorette@2.0.20: {}
 

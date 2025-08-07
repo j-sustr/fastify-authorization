@@ -5,8 +5,7 @@ import path from "node:path";
 import { AppEnv } from "../app/common/types.ts";
 
 declare module "fastify" {
-  export interface FastifyInstance {
-  }
+  export interface FastifyInstance {}
 }
 
 export class AppServer {
@@ -59,24 +58,18 @@ export class AppServer {
   async start() {
     await this._build();
 
-    try {
-      await this._fastify.listen({
-        host: "::",
-        port: this._fastify.config.PORT,
-      });
+    await this._fastify.listen({
+      port: this._fastify.config.PORT,
+    });
 
-      if (this._env === AppEnv.DEV) {
-        console.log("--- Fastify Routes ---");
-        console.log(".");
-        console.log(this._fastify.printRoutes());
-        console.log("--------------------");
-      }
-
-      return this;
-    } catch (err) {
-      this._fastify.log.error(err);
-      throw err;
+    if (this._env === AppEnv.DEV) {
+      console.log("--- Fastify Routes ---");
+      console.log(".");
+      console.log(this._fastify.printRoutes());
+      console.log("--------------------");
     }
+
+    return this;
   }
 
   async stop() {
