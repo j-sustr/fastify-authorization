@@ -19,9 +19,11 @@
   "dependencies": {
     "@fastify/autoload": "^6.3.1",
     "@fastify/env": "^5.0.2",
+    "@fastify/jwt": "^9.1.0",
     "@fastify/sensible": "^6.0.3",
     "@fastify/type-provider-typebox": "^5.2.0",
     "@sinclair/typebox": "^0.34.38",
+    "dotenv": "^17.2.1",
     "fastify": "^5.4.0",
     "fastify-plugin": "^5.0.1",
     "pino": "^9.7.0"

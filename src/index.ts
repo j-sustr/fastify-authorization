@@ -1,8 +1,5 @@
 import * as dotenv from "dotenv";
-import { KyselyPgFactory } from "./infra/kysely-pg-factory.ts";
 import { AppServer } from "./web/app-server.ts";
-import { JwtService } from "./infra/jwt-service.ts";
-import { FakeMetricsService } from "./infra/fake-metrics-service.ts";
 import { AppEnv, LogLevel } from "./app/common/types.ts";
 import { createFastify } from "./web/fastify.ts";
 
@@ -18,15 +15,7 @@ async function start() {
 
     fastify.log.info("WEBSITE_HOSTNAME=", process.env.WEBSITE_HOSTNAME);
 
-    const jwtService = new JwtService(fastify.config.JWT_SECRET);
-
-    const appDb = new KyselyPgFactory(fastify.config.APP_ENV, fastify.log).create({
-        connectionString: fastify.config.DATABASE_URL,
-    });
-
-    const metricsService = new FakeMetricsService();
-
-    const app = new AppServer(fastify, appDb, jwtService, metricsService);
+    const app = new AppServer(fastify);
 
     try {
         await app.start();
