@@ -3,7 +3,6 @@ import Fastify from "fastify";
 import { createLogger, type LoggerConfig } from "./logger.ts";
 import { AppEnv } from "../app/common/types.ts";
 import fastifyEnv from "@fastify/env";
-import { EnvSchema } from "../env-schema.ts";
 
 type Config = {
     env: AppEnv;
@@ -19,12 +18,6 @@ export async function createFastify(config: Config) {
         bodyLimit: 51200, // 50 KiB
         maxParamLength: 50,
     }).withTypeProvider<TypeBoxTypeProvider>();
-
-    await fastify.register(fastifyEnv, {
-        confKey: "config",
-        schema: EnvSchema,
-        dotenv: false,
-    });
 
     return fastify;
 }
