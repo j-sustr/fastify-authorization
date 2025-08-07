@@ -69,7 +69,8 @@ export class AppServer {
         await f.register(fastifyAutoload, {
             dir: join(__dirname, "routes"),
             routeParams: true,
-            autoHooks: true
+            autoHooks: true,
+            cascadeHooks: true
         });
 
         f.setNotFoundHandler((request, reply) => {
