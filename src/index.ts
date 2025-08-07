@@ -8,9 +8,7 @@ async function start() {
 
     const fastify = await createFastify({
         env: process.env.APP_ENV as AppEnv,
-        logLevel: process.env.LOG_LEVEL as LogLevel,
-        logtailIngestingHost: process.env.LOGTAIL_INGESTING_HOST as string,
-        logtailSourceToken: process.env.LOGTAIL_SOURCE_TOKEN as string,
+        logLevel: process.env.LOG_LEVEL as LogLevel
     });
 
     fastify.log.info("WEBSITE_HOSTNAME=", process.env.WEBSITE_HOSTNAME);

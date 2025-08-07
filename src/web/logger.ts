@@ -5,8 +5,6 @@ import pino from "pino";
 export interface LoggerConfig {
     env: AppEnv;
     logLevel: LogLevel;
-    logtailIngestingHost: string;
-    logtailSourceToken: string;
 }
 
 export function createLogger(config: LoggerConfig) {
