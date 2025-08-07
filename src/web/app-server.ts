@@ -56,22 +56,6 @@ export class AppServer {
         //     f.log.info(`[onRequest] Headers: ${JSON.stringify(request.headers)}`);
         // });
 
-        // f.addHook("preParsing", async (request, reply) => {
-        //     f.log.info("Before parsing the request body");
-        // });
-
-        // f.addHook("preValidation", async (request, reply) => {
-        //     f.log.info("Before request validation");
-        // });
-
-        // f.addHook("preHandler", async (request, reply) => {
-        //     f.log.info("Before handler execution");
-        // });
-
-        // await f.register(apiAuthGuard, {
-        //     prefix: "/api/v1",
-        // });
-
         await f.register(fastifySwagger, {
             openapi: apiDocs,
         });
