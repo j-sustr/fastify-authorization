@@ -1,11 +1,11 @@
 import { dirname, join } from "node:path";
-import { AppEnv } from "../app/common/types";
 import { fileURLToPath } from "node:url";
 import type { FastifyInstance } from "fastify";
-import { Env } from "../env-schema";
 import fastifySensible from "@fastify/sensible";
 import fastifyAutoload from "@fastify/autoload";
-import { AddressInfo } from "node:net";
+import type { AddressInfo } from "node:net";
+import type { Env } from "../env-schema.ts";
+import { AppEnv } from "../app/common/types.ts";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -57,9 +57,9 @@ export class AppServer {
         //     f.log.info("Before handler execution");
         // });
 
-        await f.register(apiAuthGuard, {
-            prefix: "/api/v1",
-        });
+        // await f.register(apiAuthGuard, {
+        //     prefix: "/api/v1",
+        // });
 
         await f.register(fastifyAutoload, {
             dir: join(__dirname, "routes"),
@@ -76,7 +76,6 @@ export class AppServer {
         });
 
         await f.ready();
-        // f.swagger();
     }
 
     async start() {

@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "type": "module",
   "scripts": {
     "format": "prettier --write \"./**/*.ts\" --ignore-path .gitignore",
     "typecheck": "tsc --noEmit",
@@ -15,7 +16,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@fastify/autoload": "^6.3.1",
     "@fastify/env": "^5.0.2",
