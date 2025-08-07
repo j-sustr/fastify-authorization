@@ -1,14 +1,11 @@
 import fastifyAutoload from "@fastify/autoload";
-import fastifyJwt from "@fastify/jwt";
 import type { FastifyInstance } from "fastify";
 import type { AddressInfo } from "node:net";
 import path from "node:path";
 import { AppEnv } from "../app/common/types.ts";
-import type { Env } from "../env-schema.ts";
 
 declare module "fastify" {
   export interface FastifyInstance {
-    config: Env;
   }
 }
 
