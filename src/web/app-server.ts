@@ -7,6 +7,7 @@ import type { AddressInfo } from "node:net";
 import type { Env } from "../env-schema.ts";
 import { AppEnv } from "../app/common/types.ts";
 import fastifyJwt from "@fastify/jwt";
+import fastifySwagger from "@fastify/swagger";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -69,6 +70,16 @@ export class AppServer {
         // await f.register(apiAuthGuard, {
         //     prefix: "/api/v1",
         // });
+
+        await f.register(fastifySwagger, {
+            openapi: apiDocs,
+        });
+        await f.register(import("@scalar/fastify-api-reference"), {
+            routePrefix: "/reference",
+            configuration: {
+                title: "API Reference",
+            },
+        });
 
         await f.register(fastifyAutoload, {
             dir: join(__dirname, "routes"),
