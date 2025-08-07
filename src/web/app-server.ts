@@ -8,6 +8,7 @@ import type { Env } from "../env-schema.ts";
 import { AppEnv } from "../app/common/types.ts";
 import fastifyJwt from "@fastify/jwt";
 import fastifySwagger from "@fastify/swagger";
+import { apiDocs } from "./api-docs.ts";
 
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
