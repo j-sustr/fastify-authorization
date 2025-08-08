@@ -16,8 +16,12 @@ export default fp(
       try {
         await request.jwtVerify();
       } catch (err) {
-        reply.send(err);
+        fastify.log.error(err);
+
+        reply.unauthorized("Unauthorized access");
       }
+
+      
     });
   }
 );
